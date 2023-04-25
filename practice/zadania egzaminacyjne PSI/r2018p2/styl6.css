@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#banner {
+    background-color: #993333;
+    color: white;
+    text-align: center;
+    height: 80px;
+}
+
+#underBanner{
+    display: flex;
+}
+
+#content{
+    display: flex;
+}
+
+#underBanner div{
+    font-family: Tahoma;
+    background-color: #CC6666;
+    color: white;
+    text-align: center;
+    width: 25%;
+    height: 150px;
+}
+
+.side {
+    background-color: #CC9999;
+    width: 40%;
+    height: 550px;
+    text-align: center;
+}
+
+#middle {
+    background-color: #FFCCCC;
+    width: 20%;
+    height: 550px;
+}
+
+#footer {
+    background-color: #993333;
+    color: white;
+    text-align: right;
+}
+
+#table {
+    border: 1px dotted red;
+    width: 100%;
+}
+
+#table td {
+    text-align: center;
+}
+
+#submit {
+    border: none;
+    padding: 20px;
+    background-color: red;
+    color: white;
+
+}
+
