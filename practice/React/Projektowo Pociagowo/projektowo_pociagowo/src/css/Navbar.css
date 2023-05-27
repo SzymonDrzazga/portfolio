@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+.navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 80px;
+}
+
+.links {
+    color: #F4EEE0;
+    text-decoration: none;
+    font-family: 'Work Sans', sans-serif;
+}
+
+#lHeader {
+    padding-left: 15px;
+    font-size: xx-large;
+}
+
+#lHeader .links {
+    font-weight: 600;
+}
+
+#rHeader {
+
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: x-large;
+    justify-content: space-around;
+}
+
+#rHeader .links {
+    margin-right: 30px;
+}

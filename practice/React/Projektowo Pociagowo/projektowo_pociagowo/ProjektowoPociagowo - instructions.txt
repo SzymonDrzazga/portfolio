@@ -1,0 +1,32 @@
+------------ FrontEnd --------------------
+
+Color Palette:
+https://colorhunt.co/palette/3936464f45576d5d6ef4eee0
+
+1. Header {
+
+	1. 'Site Logo' - onClick -> _MainSite_
+	
+	--------- IF ADMIN -------------
+	2. Edit - onClick -> _EditContent_
+	--------------------------------
+	
+	3. Log in - onClick -> Expand log in window, 
+		On top -> button 'Sign in'
+		On bottom -> 
+			- Email
+			- Password
+			- Button - onClick -> Log in
+}
+
+2. Content {
+	
+	1. _MainSite_ -> box -> recordy
+	
+	2. _EditContent_ -> przypisy z buttonami do edycji, usuwania
+}
+
+-------------- BackEnd ---------------------
+1. MongoDB - Content connected to database
+2. szyfrowanie haseł i loginów
+3. Pliki sesji
