@@ -1,0 +1,70 @@
+GET http://localhost:3001/records
+
+###
+
+POST http://localhost:3001/record/new
+Content-Type: application/json
+
+{
+	"trainNr": 57,
+	"driver": "Karzeł",
+	"departureDate": "25-04-2023",
+	"arrival": "26-04-2023",
+	"delay": 12,
+	"brand": "GEJ"
+}
+
+###
+
+DELETE http://localhost:3001/record/delete/6456695bc54e8f45335c8ca2
+
+###
+
+PUT http://localhost:3001/record/put/646371cf136a03cba8c4afe6
+Content-Type: application/json
+
+{
+	"trainNr": 57,
+	"driver": "Grzesiu",
+	"departureDate": "25-04-2023",
+	"arrival": "26-04-2023",
+	"delay": 15,
+	"brand": "GEJ"
+}
+
+
+
+###
+
+
+
+GET http://localhost:3001/users
+
+###
+
+POST http://localhost:3001/user/new
+Content-Type: application/json
+
+{
+	"username": "Grzesiu",
+	"password": "123",
+	"email": "Grzesiu@gmail.com"
+}
+
+###
+
+DELETE http://localhost:3001/user/delete/647115f242d1ba52e70fbdd6
+
+###
+
+GET http://localhost:3001/user/admin/64710305620bfe43c1375447
+
+###
+
+POST http://localhost:3001/user/find
+Content-Type: application/json
+
+{
+	"username": "Seler",
+	"password": "toGej"
+}
