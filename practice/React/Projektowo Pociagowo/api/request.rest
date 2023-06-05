@@ -32,7 +32,9 @@ Content-Type: application/json
 	"brand": "GEJ"
 }
 
+###
 
+GET http://localhost:3001/record/favByAdmin/646fb1f2e34c4e9db494da7b
 
 ###
 

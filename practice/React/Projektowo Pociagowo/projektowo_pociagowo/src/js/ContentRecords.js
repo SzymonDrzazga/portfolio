@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ContentRecords = (props) => {
 	const records = props.records;
-	const checkFunc = props.checkFunc;
+	// const checkFunc = props.checkFunc;
 	const deleteFunc = props.deleteFunc;
 	const editFunc = props.editFunc;
 
@@ -52,7 +52,7 @@ const ContentRecords = (props) => {
 
 	return (
 		<div className="record-list">
-			{records.map((call) => (
+			{records.length !== 0 ? records.map((call) => (
 				<div className="recordBody" key={call._id}>
 					{call._id === edit ? (
 						<div className={"recordDiv " + (call.favByAdmin ? "is-fav" : "")}>
@@ -137,7 +137,7 @@ const ContentRecords = (props) => {
 						""
 					)}
 				</div>
-			))}
+			)) : ("")}
 		</div>
 	);
 };

@@ -26,7 +26,7 @@ app.get("/records", async (req, res) => {
 	const records = await Record.find();
 	const recordsArray = JSON.parse(JSON.stringify(records));
 
-	// console.log(recordsArray)
+	// console.log("boobobobobobobobo", recordsArray)
 
 	let highestDelay = 0;
 	let id = 0;
@@ -56,8 +56,8 @@ app.get("/records", async (req, res) => {
 			element.favByAdmin = true;
 		}
 	});
-	// record.favByAdmin = true;
-	// record.save();
+
+	// console.log("next", JSON.parse(JSON.stringify(recordsArray)))
 
 	res.json(recordsArray);
 });

@@ -26,17 +26,23 @@ const Content = (props) => {
 		fetch(API_BASE + "/records")
 			.then((res) => res.json())
 			.then((data) => {
-				let num = 0;
-				let flag = true;
-				data.map((record) => {
-					if(record.favByAdmin){flag = false}
-					if(flag){num += 1}
-				})
-				let one = data[0];
-				let two = data[num];
+				// console.log(data);
 
-				data[0] = two;
-				data[num] = one;
+				for(let i = 0; i < data.length; ++i) {
+					if (data[i].favByAdmin) {
+						// data.$(record).insertBefore(data);
+						let obj = data[i]
+						delete data[i]
+						data.splice(0, 0, obj);
+						break;
+					};
+				}
+
+				// let one = data[0];
+				// let two = data[num];
+
+				// data[0] = two;
+				// data[num] = one;
 				setRecords(data);
 			})
 			.catch((err) => console.error("Error: ", err));
@@ -46,18 +52,18 @@ const Content = (props) => {
 		GetRecords();
 	});
 
-	const checkFunc = async (id) => {
-		const data = await fetch(API_BASE + "/record/favByAdmin/" + id).then((res) => res.json());
+	// const checkFunc = async (id) => {
+	// 	const data = await fetch(API_BASE + "/record/favByAdmin/" + id).then((res) => res.json());
 
-		setRecords((records) =>
-			records.map((record) => {
-				if (record._id === data._id) {
-					record.favByAdmin = data.favByAdmin;
-				}
-				return record;
-			})
-		);
-	};
+	// 	setRecords((records) =>
+	// 		records.map((record) => {
+	// 			if (record._id === data._id) {
+	// 				record.favByAdmin = data.favByAdmin;
+	// 			}
+	// 			return record;
+	// 		})
+	// 	);
+	// };
 
 	const deleteFunc = async (id) => {
 		const data = await fetch(API_BASE + "/record/delete/" + id, { method: "DELETE" }).then((res) => res.json());
@@ -66,16 +72,16 @@ const Content = (props) => {
 
 	const addRecord = async () => {
 		if (
-			(newTrainNr != null) &&
-			(newDriver != null) &&
-			(newDepartureDate != null) &&
-			(newArrival != null) &&
-			(newDelay != null) &&
-			(newBrand != null) &&
-			(newDepartureDate < newArrival) &&
-			(isNaN(newDriver)) && 
-			(!isNaN(newDelay)) &&
-			(newDelay >= 0)
+			newTrainNr != null &&
+			newDriver != null &&
+			newDepartureDate != null &&
+			newArrival != null &&
+			newDelay != null &&
+			newBrand != null &&
+			newDepartureDate < newArrival &&
+			isNaN(newDriver) &&
+			!isNaN(newDelay) &&
+			newDelay >= 0
 		) {
 			const data = await fetch(API_BASE + "/record/new", {
 				method: "POST",
@@ -137,8 +143,8 @@ const Content = (props) => {
 			setNewArrival();
 			setNewDelay();
 			setNewBrand();
-		}else{
-			alert("You haven't filled cells correctly")
+		} else {
+			alert("You haven't filled cells correctly");
 		}
 	};
 
@@ -148,7 +154,7 @@ const Content = (props) => {
 		<div id="contentBody">
 			<ContentRecords
 				records={records}
-				checkFunc={checkFunc}
+				// checkFunc={checkFunc}
 				deleteFunc={deleteFunc}
 				editFunc={editFunc}
 				setNewTrainNr={setNewTrainNr}
@@ -164,7 +170,7 @@ const Content = (props) => {
 				newDelay={newDelay}
 				newBrand={newBrand}
 				editCheck={editCheck}
-			/>	
+			/>
 
 			{editCheck ? (
 				<div className="addPopup" onClick={() => setPopupActive(popupActive ? false : true)}>
