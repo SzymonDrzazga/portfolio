@@ -40,7 +40,7 @@ const Navbar = (props) => {
 				</a>
 			</div>
 			<div id="mHeader">
-				{Uname}
+				<div className="links">{Uname}</div>
 				<div id="usersPanel">
 					<div id="Panel">
 						

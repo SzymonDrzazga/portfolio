@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rainbow</title>
+	</head>
+
+	<style>
+		body {
+			margin: 0 auto;
+		}
+		#paper {
+			padding: 0;
+			margin: auto;
+			display: block;
+			height: 100vh;
+			width: 100vh;
+		}
+	</style>
+
+	<body>
+		<canvas id="paper"></canvas>
+	</body>
+
+	<script>
+		const paper = document.querySelector("#paper"),
+			pen = paper.getContext("2d");
+
+		let startTime = new Date().getTime();
+
+		const draw = () => {
+			paper.width = paper.clientWidth;
+			paper.height = paper.clientHeight;
+
+			pen.fillStyle = "rgb(20, 20, 20)";
+			pen.fillRect(0, 0, paper.width, paper.height); //biale tlo
+			pen.save();
+
+			//get time
+
+			const currentTime = new Date().getTime(),
+				elapsedTime = (currentTime - startTime) / 1000;
+
+			//----------
+
+			//getting colors for arcs
+
+			const ballsColors = ["252, 237, 240", "253, 226, 231", "253, 215, 222", "254, 203, 212", "254, 192, 203", "255, 181, 194"];
+
+			const arcsColors = ["13, 152, 186", "12, 160, 177", "11, 169, 168", "10, 177, 159", "9, 186, 150", "8, 194, 141"];
+
+			//----------
+
+			//set points on canvas
+
+			const start = {
+				x: paper.width * 0.1,
+				y: paper.height * 0.9,
+			};
+
+			const center = {
+				x: paper.width * 0.5,
+				y: paper.height * 0.9,
+			};
+
+			const end = {
+				x: paper.width * 0.9,
+				y: paper.height * 0.9,
+			};
+			//----------
+
+			//Get length of line
+
+			const length = end.x - start.x;
+			//----------
+
+			//Draw line
+			pen.strokeStyle = "rgb(39, 87, 36)";
+			pen.lineWidth = 4;
+
+			pen.beginPath();
+			pen.moveTo(start.x, start.y);
+			pen.lineTo(end.x, end.y);
+			pen.stroke();
+			//----------
+
+			//assigning help variables
+			const initialArcRadius = length * 0.025;
+			const velocity = 1;
+			const distance = (Math.PI + elapsedTime * velocity) % (2 * Math.PI);
+
+			let adjdistance = distance >= Math.PI ? distance : Math.PI * 2 - distance;
+
+			//----------
+
+			for (let i = 0; i < 16; ++i) {
+				const arcRadius = initialArcRadius + i * 18.5;
+				const index = i < 11 ? i : i % 11;
+				const arcColor = index < 6 ? arcsColors[index] : arcsColors[10 - index];
+				const ballColor = index < 6 ? ballsColors[index] : ballsColors[10 - index];
+
+				// console.log("rgb(" + currentColor + ");");
+
+				//Draw arc
+
+				const x = center.x + arcRadius * Math.cos(adjdistance),
+					y = center.y + arcRadius * Math.sin(adjdistance);
+
+				pen.strokeStyle = `rgba(${arcColor}, 1)`;
+				pen.beginPath();
+				pen.arc(center.x, center.y, arcRadius, Math.PI, 2 * Math.PI);
+				pen.stroke();
+				//----------
+
+				//Draw circle
+				pen.fillStyle = `rgb(${ballColor})`;
+				pen.beginPath();
+				pen.arc(x, y, length * 0.0095, 0, 2 * Math.PI);
+				pen.fill();
+				//----------
+			}
+
+			requestAnimationFrame(draw);
+		};
+
+		draw();
+	</script>
+</html>

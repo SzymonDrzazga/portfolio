@@ -98,7 +98,8 @@ const Content = (props) => {
 				}),
 			}).then((res) => res.json());
 
-			setRecords([...records, data]);
+			
+			// setRecords([...records, data]);
 			setPopupActive(false);
 			setNewTrainNr();
 			setNewDriver();
